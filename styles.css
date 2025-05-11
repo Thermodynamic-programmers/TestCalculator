@@ -1,0 +1,26 @@
+body {
+    background: linear-gradient(135deg, #3a2a2a 0%, #1a1a1a 100%);
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+.calculator-button {
+    transition: all 0.1s ease;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.calculator-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.calculator-button:active {
+    transform: scale(0.95);
+}
+.operator-button {
+    background: linear-gradient(135deg, #ff6b00, #ff8c33);
+}
+.operator-button:hover {
+    background: linear-gradient(135deg, #ff8c33, #ff6b00);
+}
+.calculator-display {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
