@@ -9,53 +9,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico">
 </head>
 <body class="text-white">
-    <div class="container">
-        <h1 class="title">Калькулятор</h1>
+    <div class="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
+        <h1 class="text-4xl font-bold mb-10 text-center">Калькулятор</h1>
         
-        <div class="calculator">
+        <div class="calculator bg-cardBg rounded-2xl shadow-2xl w-full max-w-md overflow-hidden backdrop-blur-sm border border-cardBorder">
             <!-- Экран калькулятора -->
-            <div class="display-box">
-                <div id="expression" class="expression"></div>
-                <div id="display" class="display">0</div>
+            <div class="p-4">
+                <div class="calculator-display rounded-lg p-4 h-24 flex flex-col items-end justify-end">
+                    <div id="expression" class="text-gray-400 text-right text-sm h-6 overflow-hidden"></div>
+                    <div id="display" class="text-white text-right text-4xl font-semibold overflow-hidden">0</div>
+                </div>
             </div>
             
             <!-- Кнопки калькулятора -->
-            <div class="buttons">
+            <div class="grid grid-cols-4 gap-3 p-4">
                 <!-- Первый ряд -->
-                <button class="calculator-button">C</button>
-                <button class="calculator-button">
-                    <div class="icon-box">
+                <button id="clear-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">C</button>
+                <button id="backspace-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">
+                    <div class="w-6 h-6 flex items-center justify-center">
                         <i class="ri-delete-back-2-line"></i>
                     </div>
                 </button>
-                <button class="calculator-button">%</button>
-                <button class="calculator-button operator-button">÷</button>
+                <button id="percent-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">%</button>
+                <button id="divide-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">÷</button>
                 
                 <!-- Второй ряд -->
-                <button class="calculator-button">7</button>
-                <button class="calculator-button">8</button>
-                <button class="calculator-button">9</button>
-                <button class="calculator-button operator-button">×</button>
+                <button id="num7-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">7</button>
+                <button id="num8-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">8</button>
+                <button id="num9-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">9</button>
+                <button id="multiply-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">×</button>
                 
                 <!-- Третий ряд -->
-                <button class="calculator-button">4</button>
-                <button class="calculator-button">5</button>
-                <button class="calculator-button">6</button>
-                <button class="calculator-button operator-button">−</button>
+                <button id="num4-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">4</button>
+                <button id="num5-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">5</button>
+                <button id="num6-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">6</button>
+                <button id="subtract-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">−</button>
                 
                 <!-- Четвертый ряд -->
-                <button class="calculator-button">1</button>
-                <button class="calculator-button">2</button>
-                <button class="calculator-button">3</button>
-                <button class="calculator-button operator-button">+</button>
+                <button id="num1-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">1</button>
+                <button id="num2-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">2</button>
+                <button id="num3-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">3</button>
+                <button id="add-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">+</button>
                 
                 <!-- Пятый ряд -->
-                <button class="calculator-button col-span-2">0</button>
-                <button class="calculator-button">.</button>
-                <button class="calculator-button operator-button">=</button>
+                <button id="num0-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl col-span-2">0</button>
+                <button id="decimal-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">.</button>
+                <button id="equals-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">=</button>
             </div>
         </div>
     </div>
