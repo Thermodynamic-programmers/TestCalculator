@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
 </head>
 <body class="text-white">
     <div class="container">
@@ -18,47 +18,45 @@
         <div class="calculator">
             <!-- Экран калькулятора -->
             <div class="display-box">
-                <div id="expression" class="expression">{{ expression }}</div>
-                <div id="display" class="display">{{ display }}</div>
+                <div id="expression" class="expression"></div>
+                <div id="display" class="display">0</div>
             </div>
             
             <!-- Кнопки калькулятора -->
-            <form method="POST">
-                <div class="buttons">
-                    <!-- Первый ряд -->
-                    <button type="submit" name="action" value="clear" class="calculator-button">C</button>
-                    <button type="submit" name="action" value="backspace" class="calculator-button">
-                        <div class="icon-box">
-                            <i class="ri-delete-back-2-line"></i>
-                        </div>
-                    </button>
-                    <button type="submit" name="action" value="%" class="calculator-button">%</button>
-                    <button type="submit" name="action" value="÷" class="calculator-button operator-button">÷</button>
-                    
-                    <!-- Второй ряд -->
-                    <button type="submit" name="action" value="7" class="calculator-button">7</button>
-                    <button type="submit" name="action" value="8" class="calculator-button">8</button>
-                    <button type="submit" name="action" value="9" class="calculator-button">9</button>
-                    <button type="submit" name="action" value="×" class="calculator-button operator-button">×</button>
-                    
-                    <!-- Третий ряд -->
-                    <button type="submit" name="action" value="4" class="calculator-button">4</button>
-                    <button type="submit" name="action" value="5" class="calculator-button">5</button>
-                    <button type="submit" name="action" value="6" class="calculator-button">6</button>
-                    <button type="submit" name="action" value="−" class="calculator-button operator-button">−</button>
-                    
-                    <!-- Четвертый ряд -->
-                    <button type="submit" name="action" value="1" class="calculator-button">1</button>
-                    <button type="submit" name="action" value="2" class="calculator-button">2</button>
-                    <button type="submit" name="action" value="3" class="calculator-button">3</button>
-                    <button type="submit" name="action" value="+" class="calculator-button operator-button">+</button>
-                    
-                    <!-- Пятый ряд -->
-                    <button type="submit" name="action" value="0" class="calculator-button col-span-2">0</button>
-                    <button type="submit" name="action" value="decimal" class="calculator-button">.</button>
-                    <button type="submit" name="action" value="equals" class="calculator-button operator-button">=</button>
-                </div>
-            </form>
+            <div class="buttons">
+                <!-- Первый ряд -->
+                <button class="calculator-button">C</button>
+                <button class="calculator-button">
+                    <div class="icon-box">
+                        <i class="ri-delete-back-2-line"></i>
+                    </div>
+                </button>
+                <button class="calculator-button">%</button>
+                <button class="calculator-button operator-button">÷</button>
+                
+                <!-- Второй ряд -->
+                <button class="calculator-button">7</button>
+                <button class="calculator-button">8</button>
+                <button class="calculator-button">9</button>
+                <button class="calculator-button operator-button">×</button>
+                
+                <!-- Третий ряд -->
+                <button class="calculator-button">4</button>
+                <button class="calculator-button">5</button>
+                <button class="calculator-button">6</button>
+                <button class="calculator-button operator-button">−</button>
+                
+                <!-- Четвертый ряд -->
+                <button class="calculator-button">1</button>
+                <button class="calculator-button">2</button>
+                <button class="calculator-button">3</button>
+                <button class="calculator-button operator-button">+</button>
+                
+                <!-- Пятый ряд -->
+                <button class="calculator-button col-span-2">0</button>
+                <button class="calculator-button">.</button>
+                <button class="calculator-button operator-button">=</button>
+            </div>
         </div>
     </div>
 </body>
