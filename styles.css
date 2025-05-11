@@ -2,78 +2,135 @@ body {
     background: linear-gradient(135deg, #3a2a2a 0%, #1a1a1a 100%);
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
+    color: #ffffff;
 }
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.flex {
     display: flex;
+}
+.flex-col {
     flex-direction: column;
+}
+.items-center {
     align-items: center;
+}
+.justify-center {
     justify-content: center;
+}
+.min-h-screen {
     min-height: 100vh;
 }
-.title {
-    font-size: 2.5rem;
-    font-weight: bold;
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+.font-bold {
+    font-weight: 700;
+}
+.mb-10 {
     margin-bottom: 2.5rem;
+}
+.text-center {
     text-align: center;
 }
-.calculator {
-    background: rgba(255, 255, 255, 0.1);
+.bg-cardBg {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.rounded-2xl {
     border-radius: 1.5rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.w-full {
     width: 100%;
-    max-width: 400px;
+}
+.max-w-md {
+    max-width: 28rem;
+}
+.overflow-hidden {
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.display-box {
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+}
+.border {
+    border-width: 1px;
+}
+.border-cardBorder {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.p-4 {
     padding: 1rem;
 }
-.calculator-display {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 0.75rem;
-    padding: 1rem;
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+.h-24 {
     height: 6rem;
-    display: flex;
-    flex-direction: column;
+}
+.items-end {
     align-items: flex-end;
+}
+.justify-end {
     justify-content: flex-end;
 }
-.expression {
-    color: #a0aec0;
+.text-gray-400 {
+    color: #9ca3af;
+}
+.text-right {
     text-align: right;
+}
+.text-sm {
     font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+.h-6 {
     height: 1.5rem;
-    overflow: hidden;
 }
-.display {
-    color: white;
-    text-align: right;
+.text-white {
+    color: #ffffff;
+}
+.text-4xl {
     font-size: 2.25rem;
-    font-weight: 600;
-    overflow: hidden;
+    line-height: 2.5rem;
 }
-.buttons {
+.font-semibold {
+    font-weight: 600;
+}
+.grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+}
+.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.gap-3 {
     gap: 0.75rem;
-    padding: 1rem;
 }
 .calculator-button {
     transition: all 0.1s ease;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
 }
 .calculator-button:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -87,14 +144,27 @@ body {
 .operator-button:hover {
     background: linear-gradient(135deg, #ff8c33, #ff6b00);
 }
-.icon-box {
+.calculator-display {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+.rounded-button {
+    border-radius: 12px;
+}
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.w-6 {
     width: 1.5rem;
+}
+.h-6 {
     height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
 }
 .col-span-2 {
-    grid-column: span 2;
+    grid-column: span 2 / span 2;
 }
