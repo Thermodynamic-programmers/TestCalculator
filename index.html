@@ -4,214 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор</title>
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#ff6b00',
-                        secondary: '#333333',
-                        gradientStart: '#3a2a2a',
-                        gradientEnd: '#1a1a1a',
-                        cardBg: 'rgba(255, 255, 255, 0.1)',
-                        cardBorder: 'rgba(255, 255, 255, 0.2)',
-                    },
-                    borderRadius: {
-                        'none': '0px',
-                        'sm': '4px',
-                        DEFAULT: '8px',
-                        'md': '12px',
-                        'lg': '16px',
-                        'xl': '20px',
-                        '2xl': '24px',
-                        '3xl': '32px',
-                        'full': '9999px',
-                        'button': '12px',
-                    },
-                },
-            },
-        };
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body class="text-white">
-    <div class="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
-        <h1 class="text-4xl font-bold mb-10 text-center">Калькулятор</h1>
+    <div class="container">
+        <h1 class="title">Калькулятор</h1>
         
-        <div class="calculator bg-cardBg rounded-2xl shadow-2xl w-full max-w-md overflow-hidden backdrop-blur-sm border border-cardBorder">
+        <div class="calculator">
             <!-- Экран калькулятора -->
-            <div class="p-4">
-                <div class="calculator-display rounded-lg p-4 h-24 flex flex-col items-end justify-end">
-                    <div id="expression" class="text-gray-400 text-right text-sm h-6 overflow-hidden"></div>
-                    <div id="display" class="text-white text-right text-4xl font-semibold overflow-hidden">0</div>
-                </div>
+            <div class="display-box">
+                <div id="expression" class="expression">{{ expression }}</div>
+                <div id="display" class="display">{{ display }}</div>
             </div>
             
             <!-- Кнопки калькулятора -->
-            <div class="grid grid-cols-4 gap-3 p-4">
-                <!-- Первый ряд -->
-                <button id="clear-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">C</button>
-                <button id="backspace-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <i class="ri-delete-back-2-line"></i>
-                    </div>
-                </button>
-                <button id="percent-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">%</button>
-                <button id="divide-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">÷</button>
-                
-                <!-- Второй ряд -->
-                <button id="num7-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">7</button>
-                <button id="num8-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">8</button>
-                <button id="num9-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">9</button>
-                <button id="multiply-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">×</button>
-                
-                <!-- Третий ряд -->
-                <button id="num4-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">4</button>
-                <button id="num5-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">5</button>
-                <button id="num6-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">6</button>
-                <button id="subtract-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">−</button>
-                
-                <!-- Четвертый ряд -->
-                <button id="num1-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">1</button>
-                <button id="num2-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">2</button>
-                <button id="num3-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">3</button>
-                <button id="add-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">+</button>
-                
-                <!-- Пятый ряд -->
-                <button id="num0-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl col-span-2">0</button>
-                <button id="decimal-btn" class="calculator-button text-white rounded-button py-4 font-semibold text-xl">.</button>
-                <button id="equals-btn" class="calculator-button operator-button text-white rounded-button py-4 font-semibold text-xl">=</button>
-            </div>
+            <form method="POST">
+                <div class="buttons">
+                    <!-- Первый ряд -->
+                    <button type="submit" name="action" value="clear" class="calculator-button">C</button>
+                    <button type="submit" name="action" value="backspace" class="calculator-button">
+                        <div class="icon-box">
+                            <i class="ri-delete-back-2-line"></i>
+                        </div>
+                    </button>
+                    <button type="submit" name="action" value="%" class="calculator-button">%</button>
+                    <button type="submit" name="action" value="÷" class="calculator-button operator-button">÷</button>
+                    
+                    <!-- Второй ряд -->
+                    <button type="submit" name="action" value="7" class="calculator-button">7</button>
+                    <button type="submit" name="action" value="8" class="calculator-button">8</button>
+                    <button type="submit" name="action" value="9" class="calculator-button">9</button>
+                    <button type="submit" name="action" value="×" class="calculator-button operator-button">×</button>
+                    
+                    <!-- Третий ряд -->
+                    <button type="submit" name="action" value="4" class="calculator-button">4</button>
+                    <button type="submit" name="action" value="5" class="calculator-button">5</button>
+                    <button type="submit" name="action" value="6" class="calculator-button">6</button>
+                    <button type="submit" name="action" value="−" class="calculator-button operator-button">−</button>
+                    
+                    <!-- Четвертый ряд -->
+                    <button type="submit" name="action" value="1" class="calculator-button">1</button>
+                    <button type="submit" name="action" value="2" class="calculator-button">2</button>
+                    <button type="submit" name="action" value="3" class="calculator-button">3</button>
+                    <button type="submit" name="action" value="+" class="calculator-button operator-button">+</button>
+                    
+                    <!-- Пятый ряд -->
+                    <button type="submit" name="action" value="0" class="calculator-button col-span-2">0</button>
+                    <button type="submit" name="action" value="decimal" class="calculator-button">.</button>
+                    <button type="submit" name="action" value="equals" class="calculator-button operator-button">=</button>
+                </div>
+            </form>
         </div>
     </div>
-
-    <script type="text/javascript">
-        async function start() {
-            let pyodide = await loadPyodide();
-            await pyodide.runPythonAsync(`
-                import js
-                from pyodide.ffi import create_proxy
-
-                class Calculator:
-                    def __init__(self):
-                        self.current_input = '0'  # Что сейчас на экране
-                        self.current_expression = ''  # Что мы считаем
-                        self.last_result = None  # Последний результат
-                        self.waiting_for_operand = False  # Ждем следующее число
-                        self.display = js.document.getElementById('display')  # Экран
-                        self.expression_display = js.document.getElementById('expression')  # Выражение
-
-                    def update_display(self):
-                        self.display.textContent = self.current_input  # Показываем число
-                        self.expression_display.textContent = self.current_expression  # Показываем выражение
-
-                    def append_number(self, number):
-                        if self.current_input == '0' or self.waiting_for_operand:
-                            self.current_input = number
-                            self.waiting_for_operand = False
-                        else:
-                            self.current_input += number
-                        self.update_display()
-
-                    def append_decimal(self):
-                        if self.waiting_for_operand:
-                            self.current_input = '0.'
-                            self.waiting_for_operand = False
-                        elif '.' not in self.current_input:
-                            self.current_input += '.'
-                        self.update_display()
-
-                    def append_operator(self, operator):
-                        if self.last_result is not None:
-                            self.current_expression = f"{self.last_result} {operator} "
-                            self.waiting_for_operand = True
-                        else:
-                            self.current_expression = f"{self.current_input} {operator} "
-                            self.last_result = float(self.current_input) if '.' in self.current_input else int(self.current_input)
-                            self.waiting_for_operand = True
-                        self.update_display()
-
-                    def calculate(self):
-                        if self.last_result is None or self.waiting_for_operand:
-                            return
-                        expression = self.current_expression + self.current_input
-                        try:
-                            result = eval(expression.replace('×', '*').replace('÷', '/').replace('−', '-'))
-                            self.current_expression = expression + ' ='
-                            self.current_input = str(result)
-                            self.last_result = result
-                            self.waiting_for_operand = True
-                        except:
-                            self.current_input = 'Ошибка'
-                            self.current_expression = ''
-                            self.last_result = None
-                            self.waiting_for_operand = True
-                        self.update_display()
-
-                    def clear_all(self):
-                        self.current_input = '0'
-                        self.current_expression = ''
-                        self.last_result = None
-                        self.waiting_for_operand = False
-                        self.update_display()
-
-                    def backspace(self):
-                        if len(self.current_input) > 1:
-                            self.current_input = self.current_input[:-1]
-                        else:
-                            self.current_input = '0'
-                        self.update_display()
-
-                calc = Calculator()
-
-                # Функции для кнопок
-                def clear_handler(event): calc.clear_all()
-                def backspace_handler(event): calc.backspace()
-                def percent_handler(event): calc.append_operator('%')
-                def divide_handler(event): calc.append_operator('÷')
-                def multiply_handler(event): calc.append_operator('×')
-                def subtract_handler(event): calc.append_operator('−')
-                def add_handler(event): calc.append_operator('+')
-                def decimal_handler(event): calc.append_decimal()
-                def equals_handler(event): calc.calculate()
-                def num_handler(number): lambda event: calc.append_number(number)
-
-                # Привязываем кнопки
-                js.document.getElementById('clear-btn').addEventListener('click', create_proxy(clear_handler))
-                js.document.getElementById('backspace-btn').addEventListener('click', create_proxy(backspace_handler))
-                js.document.getElementById('percent-btn').addEventListener('click', create_proxy(percent_handler))
-                js.document.getElementById('divide-btn').addEventListener('click', create_proxy(divide_handler))
-                js.document.getElementById('multiply-btn').addEventListener('click', create_proxy(multiply_handler))
-                js.document.getElementById('subtract-btn').addEventListener('click', create_proxy(subtract_handler))
-                js.document.getElementById('add-btn').addEventListener('click', create_proxy(add_handler))
-                js.document.getElementById('decimal-btn').addEventListener('click', create_proxy(decimal_handler))
-                js.document.getElementById('equals-btn').addEventListener('click', create_proxy(equals_handler))
-
-                for num in '0123456789':
-                    js.document.getElementById(f'num{num}-btn').addEventListener('click', create_proxy(num_handler(num)))
-
-                # Клавиатура
-                def keydown_handler(event):
-                    key = event.key
-                    if key in '0123456789': calc.append_number(key)
-                    elif key == '.': calc.append_decimal()
-                    elif key in ['+', '-', '*', '/']: calc.append_operator(key)
-                    elif key in ['Enter', '=']: calc.calculate()
-                    elif key == 'Escape': calc.clear_all()
-                    elif key == 'Backspace': calc.backspace()
-
-                js.document.addEventListener('keydown', create_proxy(keydown_handler))
-
-                calc.update_display()
-            `);
-        }
-        start();
-    </script>
 </body>
 </html>
