@@ -2,11 +2,78 @@ body {
     background: linear-gradient(135deg, #3a2a2a 0%, #1a1a1a 100%);
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+.calculator {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.display-box {
+    padding: 1rem;
+}
+.calculator-display {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.expression {
+    color: #a0aec0;
+    text-align: right;
+    font-size: 0.875rem;
+    height: 1.5rem;
+    overflow: hidden;
+}
+.display {
+    color: white;
+    text-align: right;
+    font-size: 2.25rem;
+    font-weight: 600;
+    overflow: hidden;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    padding: 1rem;
 }
 .calculator-button {
     transition: all 0.1s ease;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
 }
 .calculator-button:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -20,7 +87,14 @@ body {
 .operator-button:hover {
     background: linear-gradient(135deg, #ff8c33, #ff6b00);
 }
-.calculator-display {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
+.icon-box {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.col-span-2 {
+    grid-column: span 2;
 }
