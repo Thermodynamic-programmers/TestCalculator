@@ -27,14 +27,10 @@
     <script>
         async function loadPyodideAndRun() {
             let pyodide = await loadPyodide();
-            // Начало Python-кода
             await pyodide.runPythonAsync(`
                 def calculate(num1, num2, operation):
-                    # Приводим входные данные к числам
                     num1 = float(num1)
                     num2 = float(num2)
-                    
-                    # Выполняем операцию в зависимости от выбора
                     if operation == "add":
                         return num1 + num2
                     elif operation == "subtract":
@@ -47,7 +43,6 @@
                         return num1 / num2
                     return "Неизвестная операция"
             `);
-            // Конец Python-кода
             return pyodide;
         }
 
@@ -55,11 +50,25 @@
 
         async function calculate() {
             let pyodide = await pyodideReady;
-            let num1 = document.getElementById("num1").value;
-            let num2 = document.getElementById("num2").value;
+            let num1Str = document.getElementById("num1").value.trim();
+            let num2Str = document.getElementById("num2").value.trim();
             let operation = document.getElementById("operation").value;
 
-            // Вызываем Python-функцию
+            // Check if inputs are empty
+            if (num1Str === "" || num2Str === "") {
+                document.getElementById("result").innerText = "Ошибка: Введите оба числа";
+                return;
+            }
+
+            // Parse inputs to numbers and validate
+            let num1 = parseFloat(num1Str);
+            let num2 = parseFloat(num2Str);
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").innerText = "Ошибка: Введены некорректные числа";
+                return;
+            }
+
+            // Call the Python function with validated inputs
             let result = await pyodide.runPythonAsync(`
                 calculate(${num1}, ${num2}, "${operation}")
             `);
