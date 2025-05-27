@@ -1,4 +1,3 @@
-```python
 def calculate(num1, num2, operation):
     # Приводим входные данные к числам
     num1 = float(num1)
@@ -16,4 +15,3 @@ def calculate(num1, num2, operation):
             return "Ошибка: деление на ноль"
         return num1 / num2
     return "Неизвестная операция"
-```
